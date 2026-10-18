@@ -19,8 +19,8 @@ modal('تنظیمات',h('form',{class:'form',onsubmit:async ev=>{ev.preventDefa
 function subjects(){const c=modal('انتخاب بخش',h('div',{class:'subjects'},PAGES.map(([k,n,i])=>h('button',{class:'btn',onclick:()=>{c();nav(k)}},i+' '+n))))}
 const navItems=()=>[...PAGES.map(([k,n,i])=>({label:n,icon:i,onClick:()=>nav(k)})),'-',{label:'تغییر تم',icon:'◐',onClick:toggleTheme},{label:'تنظیمات',icon:'⚙',onClick:settings}];
 function shell(){const main=h('main',{class:'main'});
-const prof=h('button',{class:'btn',onclick:ev=>{ev.stopPropagation();const r=prof.getBoundingClientRect();showMenu(r.left,r.bottom+6,[{label:state.user.email,icon:'👤',disabled:true},{label:'تنظیمات',icon:'⚙',onClick:settings},'-',{label:'خروج',icon:'⎋',danger:true,onClick:async()=>{await auth.signOut();authView()}}])}},'👤 پروفایل');
-app.replaceChildren(h('header',{class:'topbar'},h('span',{class:'brand'},'ردیاب سلامت'),h('button',{class:'btn',onclick:subjects},'☰ بخش‌ها'),h('button',{class:'btn',onclick:toggleTheme},'◐'),h('button',{class:'btn',onclick:settings},'⚙'),prof),main);
+const prof=h('button',{class:'btn',onclick:ev=>{ev.stopPropagation();const r=prof.getBoundingClientRect();showMenu(r.left,r.bottom+6,[{label:state.user.email,icon:'👤',disabled:true},{label:'تنظیمات',icon:'⚙',onClick:settings},'-',{label:'خروج',icon:'⎋',danger:true,onClick:async()=>{await auth.signOut();authView()}}])}},'👤',h('span',{class:'lbl'},' پروفایل'));
+app.replaceChildren(h('header',{class:'topbar'},h('span',{class:'brand'},'ردیاب سلامت'),h('button',{class:'btn',onclick:subjects},'☰',h('span',{class:'lbl'},' بخش‌ها')),h('button',{class:'btn',onclick:toggleTheme},'◐'),h('button',{class:'btn',onclick:settings},'⚙'),prof),main);
 document.oncontextmenu=ev=>{ev.preventDefault();showMenu(ev.clientX,ev.clientY,navItems())};
 const route=async()=>{const k=location.hash.slice(1);const key=load[k]?k:'dashboard';try{main.replaceChildren();await(await load[key]()).default(main)}catch(x){toast(x.message,true)}};
 addEventListener('hashchange',route);route()}

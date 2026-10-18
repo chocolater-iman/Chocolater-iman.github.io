@@ -1,0 +1,7 @@
+.ac{position:relative;scroll-margin-top:calc(var(--top) + 10px)}
+.ac-list{position:absolute;inset-inline:0;top:calc(100% + 6px);z-index:60;max-height:min(40vh,300px);overflow:auto;overscroll-behavior:contain;background:var(--surface);border:1px solid var(--accent);border-radius:12px;box-shadow:var(--shadow);padding:4px;color:var(--text);font-size:1rem;animation:up .12s}
+.ac-item{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:46px;padding:8px 12px;border-radius:9px;cursor:pointer}
+.ac-item.on{background:color-mix(in srgb,var(--accent) 22%,transparent)}
+.ac-item mark{background:none;color:var(--accent2);font-weight:800}
+.ac-item small{color:var(--muted);white-space:nowrap;font-size:.78rem}
+.ac-empty{padding:12px;color:var(--muted);text-align:center}

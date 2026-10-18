@@ -1,0 +1,28 @@
+html{scroll-padding-top:calc(var(--top) + 12px);-webkit-text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent}
+.topbar{height:calc(var(--top) + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
+.card{background:linear-gradient(165deg,color-mix(in srgb,var(--surface) 90%,var(--accent)),var(--surface))}
+.btn{min-height:42px}.btn:active{transform:scale(.96)}
+.stat{--c:var(--accent);position:relative;overflow:hidden}
+.stat::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--c)}
+.stat::after{content:"";position:absolute;inset-inline-end:-26px;top:-26px;width:90px;height:90px;border-radius:50%;background:var(--c);opacity:.16;filter:blur(10px)}
+.grid .stat:nth-child(6n+2){--c:var(--accent2)}.grid .stat:nth-child(6n+3){--c:var(--warn)}.grid .stat:nth-child(6n+4){--c:var(--danger)}.grid .stat:nth-child(6n+5){--c:var(--ok)}.grid .stat:nth-child(6n){--c:#c084fc}
+.row{min-height:48px;-webkit-touch-callout:none}.row b{color:var(--accent2);min-width:46px}.row span{flex:1;line-height:1.7}
+.ctx-item{-webkit-touch-callout:none}
+@keyframes sheet{from{transform:translateY(100%)}to{transform:none}}
+@media(max-width:640px){
+.topbar{gap:6px;padding-inline:10px}.topbar .lbl{display:none}
+.topbar .btn{width:42px;padding:0;display:grid;place-items:center;font-size:1.1rem}
+.main{padding:14px 12px calc(24px + env(safe-area-inset-bottom,0px))}
+.card{padding:14px;border-radius:16px}
+.grid{grid-template-columns:repeat(2,1fr);gap:10px}.stat b{font-size:1.25rem}
+.inp{font-size:16px;min-height:46px}
+.form .btn.primary{min-height:50px;font-size:1.05rem;position:sticky;bottom:10px}
+.overlay{place-items:end center}
+.modal{width:100%;border-radius:22px 22px 0 0;max-height:88vh;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px));animation:sheet .28s}
+.subjects{grid-template-columns:repeat(2,1fr)}.subjects .btn{font-size:1.05rem;padding:22px 8px}
+.ctx{min-width:min(78vw,260px)}.ctx-item{padding:13px 12px;flex-wrap:wrap}
+.ctx-item>.ctx,.ctx-item:hover>.ctx{position:static;display:none;box-shadow:none;border:0;background:var(--surface2);margin-top:6px;width:100%}
+.ctx-item.open>.ctx{display:block}
+.tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-12px;padding-inline:12px}.tabs .btn{white-space:nowrap}
+#toasts{inset-inline:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px))}}
