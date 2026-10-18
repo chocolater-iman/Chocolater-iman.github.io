@@ -34,3 +34,10 @@ summary{cursor:pointer;padding:10px 0;font-weight:600;display:flex;justify-conte
 details .row{background:var(--surface);margin-top:6px}
 .bmi{position:relative;height:8px;border-radius:8px;margin:14px 0;background:linear-gradient(270deg,#4da3ff 0 14%,#3ddc97 14% 40%,#ffb84d 40% 60%,#ff8a4d 60% 80%,#ff5d73 80%)}
 .bmi i{position:absolute;top:-5px;width:4px;height:18px;border-radius:3px;background:var(--text);box-shadow:0 0 0 2px var(--surface)}
+.stack>*{margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chips span{background:var(--surface2);border:1px solid var(--border);border-radius:99px;padding:4px 12px;font-size:.85rem}
+.meter{height:8px;border-radius:8px;background:var(--surface2);overflow:hidden;margin:6px 0 14px}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s}
+.barl{display:flex;gap:4px;margin-top:6px}.barl small{flex:1;text-align:center;font-size:.68rem;color:var(--muted);line-height:1.5}
+.card.warn{border-inline-start:4px solid var(--warn)}

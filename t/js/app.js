@@ -7,7 +7,7 @@ import {sb} from './services/supabase.js';
 import {modal} from './components/modal.js';
 import {showMenu} from './components/contextmenu.js';
 import {toast} from './components/toast.js';
-const load={dashboard:()=>import('./pages/dashboard.js'),food:()=>import('./pages/food.js'),health:()=>import('./pages/health.js'),sleep:()=>import('./pages/sleep.js'),activity:()=>import('./pages/activity.js'),reports:()=>import('./pages/reports.js'),archive:()=>import('./pages/archive.js')};
+const load={dashboard:()=>import('./pages/dashboard.js'),food:()=>import('./pages/food.js'),health:()=>import('./pages/health.js'),sleep:()=>import('./pages/sleep.js'),activity:()=>import('./pages/activity.js'),reports:()=>import('./pages/reports.js'),archive:()=>import('./pages/archive.js'),fitness:()=>import('./pages/fitness.js')};
 const app=document.getElementById('app'),nav=k=>location.hash='#'+k;
 document.documentElement.dataset.theme=localStorage.theme||'dark';
 const toggleTheme=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=localStorage.theme=t};
@@ -24,6 +24,6 @@ app.replaceChildren(h('header',{class:'topbar'},h('span',{class:'brand'},'ردی
 document.oncontextmenu=ev=>{ev.preventDefault();showMenu(ev.clientX,ev.clientY,navItems())};
 const route=async()=>{const k=location.hash.slice(1);const key=load[k]?k:'dashboard';try{main.replaceChildren();await(await load[key]()).default(main)}catch(x){toast(x.message,true)}};
 addEventListener('hashchange',route);route()}
-async function start(){const s=await auth.session();if(!s)return authView();state.user=s.user;try{Object.assign(state.profile,(await D.getProfile())||{})}catch{}shell()}
+async function start(){const s=await auth.session();if(!s)return authView();state.user=s.user;try{Object.entries((await D.getProfile())||{}).forEach(([k,v])=>v!=null&&(state.profile[k]=v))}catch{}shell()}
 sb.auth.onAuthStateChange((ev)=>{if(ev==='SIGNED_OUT')authView()});
 start();
