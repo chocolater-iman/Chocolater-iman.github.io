@@ -15,8 +15,9 @@ const q=h('input',{class:'inp',placeholder:'جستجو…',oninput:()=>draw()});
 const dayIn=h('input',{type:'date',class:'inp',value:day,onchange:e=>{day=e.target.value;load()}});
 const timeIn=h('input',{class:'inp',pattern:TIME_RE,inputmode:'numeric',maxlength:5,placeholder:'HH:MM',value:nowHM(),required:'',oninput:tfmt});
 const form=h('form',{class:'form',onsubmit:save},h('label',{},'تاریخ',dayIn),h('label',{},'ساعت (۲۴ ساعته)',timeIn),
-...cfg.fields.map(f=>{const ac=f.ac&&autocomplete(f.ac);const el=ac?ac.input:f.options?h('select',{class:'inp'},f.options.map(o=>h('option',{value:o},o))):h('input',{class:'inp',type:'text',inputmode:f.time?'numeric':f.type==='number'?'decimal':null,maxlength:f.time?5:null,oninput:f.time?tfmt:null,placeholder:f.ph||'',required:f.req?'':null});if(f.def)el.value=f.def;inputs[f.k]=el;return h('label',{},f.label,ac?ac.wrap:el)}),
+...cfg.fields.map(f=>{const ac=f.ac&&autocomplete(f.ac);const el=ac?ac.input:f.options?h('select',{class:'inp'},f.options.map(o=>h('option',{value:o},o))):h('input',{class:'inp',type:'text',inputmode:f.time?'numeric':f.type==='number'?'decimal':null,maxlength:f.time?5:null,oninput:f.time?tfmt:null,placeholder:f.ph||'',required:f.req?'':null});inputs[f.k]=el;return h('label',{},f.label,ac?ac.wrap:el)}),
 h('button',{class:'btn primary'},editing?'ذخیره':'ثبت'));
+const applyDefs=()=>cfg.fields.forEach(f=>{const d=typeof f.def==='function'?f.def():f.def;if(d!=null&&d!=='')inputs[f.k].value=d});applyDefs();
 async function load(){const[a,b]=dayRange(day);try{rows=await D.list(cfg.kind,a,b)}catch(e){toast(e.message,true)}draw()}
 function draw(){const f=rows.filter(r=>!q.value||JSON.stringify(r.data).includes(q.value));
 listEl.replaceChildren(...(f.length?f.map(row):[h('p',{class:'muted'},'موردی ثبت نشده است.')]));
@@ -28,6 +29,6 @@ async function dup(r){try{await D.add(cfg.kind,new Date().toISOString(),r.data);
 async function del(r){if(!confirm('حذف شود؟'))return;try{await D.remove(r.id);toast('حذف شد');load()}catch(e){toast(e.message,true)}}
 async function save(e){e.preventDefault();try{let data={};cfg.fields.forEach(f=>{const v=f.type==='number'?num(inputs[f.k].value):inputs[f.k].value;if(typeof v==='number'&&isNaN(v))throw new Error('عدد نامعتبر است');data[f.k]=v});
 if(cfg.prep)data=await cfg.prep(data);const ts=new Date(day+'T'+timeIn.value).toISOString();
-editing?await D.update(editing,{ts,data}):await D.add(cfg.kind,ts,data);toast('ثبت شد');editing=null;form.reset();timeIn.value=nowHM();load()}catch(err){toast(err.message,true)}}
+editing?await D.update(editing,{ts,data}):await D.add(cfg.kind,ts,data);toast('ثبت شد');editing=null;form.reset();applyDefs();timeIn.value=nowHM();load()}catch(err){toast(err.message,true)}}
 root.replaceChildren(h('h2',{},cfg.title),topEl,h('div',{class:'split'},h('div',{class:'card'},form),h('div',{class:'card'},q,listEl)),cfg.before?await cfg.before():'');
 await load()};

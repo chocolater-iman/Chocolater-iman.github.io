@@ -29,3 +29,8 @@
 .bars{display:flex;align-items:flex-end;gap:4px;height:140px}
 .bars i{flex:1;background:linear-gradient(var(--accent),var(--accent2));border-radius:4px 4px 0 0;min-height:2px}
 table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{padding:8px;text-align:start;border-bottom:1px solid var(--border)}
+details{background:var(--surface2);border-radius:12px;padding:2px 12px 10px}
+summary{cursor:pointer;padding:10px 0;font-weight:600;display:flex;justify-content:space-between;gap:10px}
+details .row{background:var(--surface);margin-top:6px}
+.bmi{position:relative;height:8px;border-radius:8px;margin:14px 0;background:linear-gradient(270deg,#4da3ff 0 14%,#3ddc97 14% 40%,#ffb84d 40% 60%,#ff8a4d 60% 80%,#ff5d73 80%)}
+.bmi i{position:absolute;top:-5px;width:4px;height:18px;border-radius:3px;background:var(--text);box-shadow:0 0 0 2px var(--surface)}

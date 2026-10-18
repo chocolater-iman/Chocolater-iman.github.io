@@ -7,7 +7,7 @@ import {sb} from './services/supabase.js';
 import {modal} from './components/modal.js';
 import {showMenu} from './components/contextmenu.js';
 import {toast} from './components/toast.js';
-const load={dashboard:()=>import('./pages/dashboard.js'),food:()=>import('./pages/food.js'),health:()=>import('./pages/health.js'),sleep:()=>import('./pages/sleep.js'),activity:()=>import('./pages/activity.js'),reports:()=>import('./pages/reports.js')};
+const load={dashboard:()=>import('./pages/dashboard.js'),food:()=>import('./pages/food.js'),health:()=>import('./pages/health.js'),sleep:()=>import('./pages/sleep.js'),activity:()=>import('./pages/activity.js'),reports:()=>import('./pages/reports.js'),archive:()=>import('./pages/archive.js')};
 const app=document.getElementById('app'),nav=k=>location.hash='#'+k;
 document.documentElement.dataset.theme=localStorage.theme||'dark';
 const toggleTheme=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=localStorage.theme=t};
