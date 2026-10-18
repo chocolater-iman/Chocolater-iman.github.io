@@ -1,0 +1,10 @@
+export const fa=n=>n==null||isNaN(n)?'—':Number(n).toLocaleString('fa-IR',{maximumFractionDigits:1});
+const p2=n=>String(n).padStart(2,'0');
+export const dayKey=d=>{d=new Date(d);return `${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())}`};
+export const nowHM=()=>{const d=new Date();return `${p2(d.getHours())}:${p2(d.getMinutes())}`};
+export const hm=ts=>{const d=new Date(ts);return `${p2(d.getHours())}:${p2(d.getMinutes())}`};
+export const fdate=d=>new Date(d).toLocaleDateString('fa-IR');
+export const dayRange=k=>[new Date(k+'T00:00').toISOString(),new Date(k+'T23:59:59').toISOString()];
+export const TIME_RE='([01][0-9]|2[0-3]):[0-5][0-9]';
+export const sum=(a,f)=>a.reduce((s,x)=>s+(+f(x)||0),0);
+export const avg=(a,f)=>a.length?sum(a,f)/a.length:null;

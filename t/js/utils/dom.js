@@ -1,0 +1,1 @@
+export const h=(t,p={},...c)=>{const e=document.createElement(t);for(const[k,v]of Object.entries(p)){if(v==null||v===false)continue;if(k.startsWith('on'))e.addEventListener(k.slice(2),v);else if(k==='class')e.className=v;else e.setAttribute(k,v)}e.append(...c.flat().filter(x=>x!=null&&x!==false));return e};
